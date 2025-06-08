@@ -1,14 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import LandingPage from './pages/Home/LandingPage'
+import Login from './pages/authentication/Login'
+import Register from './pages/authentication/Register'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
-     <h1>Vite + React + Tailwind CSS</h1>
+   
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register />} />
+        {/* باقي الصفحات */}
+      </Routes>
     </>
   )
 }
