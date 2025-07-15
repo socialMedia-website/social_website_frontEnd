@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const res = await login(form).unwrap();
       dispatch(loginSuccess({ token: res.token, rememberMe: true }));
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError(err.data?.message || "Login failed");
     }

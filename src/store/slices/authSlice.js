@@ -28,6 +28,15 @@ const authSlice = createSlice({
   reducers: {
     loginSuccess: (state, action) => {
       const { token, rememberMe } = action.payload;
+      if (!token || typeof token !== "string") {
+        console.error("Invalid token on login:", token);
+        state.user = null;
+        state.token = null;
+        state.isAuthenticated = false;
+        localStorage.removeItem(TOKEN_KEY);
+        sessionStorage.removeItem(TOKEN_KEY);
+        return;
+      }
       try {
         const decodedUser = jwtDecode(token);
         state.user = decodedUser;
